@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-ng-app="MyApp">
+	<head>
+
+		<title>Angular js - Using routes </title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+		<!--container-->
+		<div class="container">
+
+      <!-- links -->
+      <a href="#/home">Home page</a> |
+  		<a href="#/add">Add Users</a> |
+  		<a href="#/list">List Users</a>
+
+
+      <!-- my views -->
+			<div data-ng-view=""></div>
+
+
+		</div><!--container-->
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+
+		<!-- routes -->
+    <script src="angular-route.js"></script>
+
+		<!-- scope -->
+		<script>
+      var myApp = angular.module("MyApp",['ngRoute']);
+
+      // define my routes
+      myApp.config(function($routeProvider, $locationProvider){
+        $routeProvider.when('/home',
+	      	{
+	      		templateUrl: 'views/home.html',
+	      		controller: 'SimpleController'
+	      	});
+        $routeProvider.when('/add',
+	      	{
+	      		templateUrl: 'views/add_users.html',
+	      		controller: 'SimpleController'
+	      	});
+	      $routeProvider.when('/list',
+	      	{
+	      		templateUrl: 'views/list_users.html',
+	      		controller: 'SimpleController'
+	      	});
+        $routeProvider.otherwise ({redirectTo: '/home'});
+      });
+
+      // define my controller
+      myApp.controller("SimpleController", function($scope)
+      {
+      	// my array
+				$scope.customers=[
+					{name:'astm',city:'Alex'},
+					{name:'tamer',city:'Usa'},
+					{name:'ahmed',city:'Cairo'}
+				];
+
+	      // add new persons to my array
+	      $scope.addPerson = function(){
+	      	$scope.customers.push(
+	      	{
+	      		name: $scope.name,
+	      		city: $scope.city
+	      	});
+	      };
+
+      });
+
+		</script>
+
+	</body>
+</html>
