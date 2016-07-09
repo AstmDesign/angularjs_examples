@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="" ng-app="MyApp">
+	<head>
+
+		<title>passing simple data from the model to the view </title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+		<!--container-->
+		<div class="container">
+
+			<div ng-controller="SendingDataToTheView">
+
+				Please type your name : <input ng-model="name" placeholder="Please type your name">
+
+				<h1> Welcome {{ name }} </h1>
+
+			</div>
+
+
+		</div><!--container-->
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+
+    <script>
+      // define my app
+      var myApp = angular.module("MyApp",[]);
+
+      // define my controller
+      myApp.controller("SendingDataToTheView",function($scope)
+      {
+      	// simple data
+		    $scope.name="Astm";
+
+      });
+    </script>
+
+	</body>
+</html>

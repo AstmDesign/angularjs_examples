@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="" ng-app="MyApp">
+	<head>
+
+		<title>Using filters </title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+		<!--container-->
+		<div class="container">
+
+			<div ng-controller="SendingDataToTheView">
+
+        <br><b>Filtering json data by number : </b><br><br>
+
+        <ul ng-repeat="person in people | orderBy:'number'">
+        	<li>
+        		<b> {{ person.name | uppercase  }} </b> number is <b> {{ person.number }} </b> and his position  <b> {{ person.position }} </b>
+        	</li>
+        </ul>
+
+			</div>
+
+
+		</div><!--container-->
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+
+    <script>
+      // define my app
+      var myApp = angular.module("MyApp",[]);
+
+      // define my controller
+      myApp.controller('SendingDataToTheView', function($scope, $http) {
+        $http.get("data.json")
+        .then(function(response) {
+          $scope.people = response.data;
+        });
+      });
+    </script>
+
+	</body>
+</html>

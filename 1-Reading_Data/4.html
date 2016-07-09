@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="" ng-app="MyApp">
+	<head>
+
+		<title>passing multi-data from the model to the view </title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+		<!--container-->
+		<div class="container">
+
+			<div ng-controller="SendingDataToTheView">
+
+        <br><b>listing data : </b><br><br>
+
+        <!-- {{ people }} -->
+
+        <ul ng-repeat="person in people">
+        	<li>
+        		<b> {{ person.name }} </b> from <small>{{ person.city }} </small>
+        	</li>
+        </ul>
+
+			</div>
+
+		</div><!--container-->
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+
+    <script>
+      // define my app
+      var myApp = angular.module("MyApp",[]);
+
+      // define my controller
+      myApp.controller("SendingDataToTheView", function($scope)
+      {
+
+      	// my array
+				$scope.people=[
+					{name:'maa',city:'Menouf'},
+					{name:'hossam',city:'Cairo'},
+					{name:'astm',city:'Menouf'},
+					{name:'magdy',city:'Cairo'}
+				];
+
+      });
+    </script>
+
+	</body>
+</html>
