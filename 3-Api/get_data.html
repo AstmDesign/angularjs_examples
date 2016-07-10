@@ -60,7 +60,7 @@
 		<script>
       var myApp = angular.module("MyApp",['ngRoute']);
 
-      // jobs controller
+      // reading controller
   		myApp.controller('ReadingDataController', function($scope, $http) {
   		 $http.get('https://www.reddit.com/r/Android/new/.json').then(function(resp) {
   		    $scope.reddit_data = resp.data.data.children;
