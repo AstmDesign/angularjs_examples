@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html data-ng-app="MyApp">
+	<head>
+
+		<title>Angular js - Reading data from api </title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+		<!--container-->
+		<div class="container">
+      <br>
+      <h4>
+        Reading data from the api link :
+        <small>
+          <a href="https://www.reddit.com/r/Android/new/.json" target="_blank">
+            https://www.reddit.com/r/Android/new/.json
+          </a>
+        </small>
+      </h4>
+      <hr>
+      <br>
+      <div ng-controller="ReadingDataController">
+        <table border="1" width="100%">
+          <tr>
+      			<td><b> Domain </b></td>
+            <td><b> System </b></td>
+            <td><b> Device </b></td>
+            <td><b> Author </b></td>
+            <td><b> Images </b></td>
+      		</tr>
+      		<tr ng-repeat="row in reddit_data">
+      			<td> {{ row.data.domain }} </td>
+            <td> {{ row.data.subreddit}} </td>
+            <td> {{ row.data.link_flair_text}} </td>
+            <td> {{ row.data.author}} </td>
+            <td>
+              <div ng-repeat="img in row.data.preview.images ">
+                <a href="{{img.source.url}}" target="_blank">
+                  <img src="{{img.source.url}}" width="100px" height="100px">
+                </a>
+              </div>
+            </td>
+      		</tr>
+      	</table>
+      </div>
+
+		</div><!--container-->
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+
+		<!-- routes -->
+    <script src="angular-route.js"></script>
+
+		<!-- scope -->
+		<script>
+      var myApp = angular.module("MyApp",['ngRoute']);
+
+      // jobs controller
+  		myApp.controller('ReadingDataController', function($scope, $http) {
+  		 $http.get('https://www.reddit.com/r/Android/new/.json').then(function(resp) {
+  		    $scope.reddit_data = resp.data.data.children;
+  		    console.log('Success', $scope.reddit_data);
+  		  },function(err) {
+  		    console.error('ERR', err);
+  		  })
+  		})
+
+		</script>
+
+	</body>
+</html>
