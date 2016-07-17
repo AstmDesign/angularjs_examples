@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-ng-app="MyApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Angular js - Create tabs</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<h1>Show the person details by tabs </h1>
+
+		<div ng-controller="detailsController" ng-init="tab=1">
+			<ul class="nav nav-pills">
+				<li ng-class="{active : tab===1}">
+					<a href ng-click="tab=1">Name</a>
+				</li>
+				<li ng-class="{active : tab===2}">
+					<a href ng-click="tab=2">Age</a>
+				</li>
+				<li ng-class="{active : tab===3}">
+					<a href ng-click="tab=3">Details</a>
+				</li>
+			</ul>
+
+			<div class="panel" ng-show="tab===1">
+				<p>{{myDetails.name}}</p>
+			</div>
+
+			<div class="panel" ng-show="tab===2">
+				<p>{{myDetails.age}}</p>
+			</div>
+
+			<div class="panel" ng-show="tab===3">
+				<p>
+					{{myDetails.details}}
+					<br>
+					<span ng-show="myDetails.connetion">
+						{{myDetails.site}}
+					</span>
+				</p>
+			</div>
+
+		</div>
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+
+		<!-- angular model -->
+		<script>
+      var myApp = angular.module("MyApp",[]);
+
+      // define user details data controller
+      myApp.controller("detailsController", function($scope){
+    		$scope.myDetails={
+    			name: "person one",
+    			age : "30",
+    			details : "first person data data data data data data data ",
+    			site: "www.hotmail.com",
+    			connetion: true
+				};
+      });
+
+
+    </script>
+	</body>
+</html>

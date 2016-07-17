@@ -20,12 +20,12 @@
       <br>
 
 
-      <form ng-controller="formController" name="myForm" novalidate>
+      <form ng-controller="formController" name="myForm" >
 
       <p>Username:<br>
       <input type="text" name="user" ng-model="user" required>
       <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
-        <span ng-show="myForm.user.$error.required">Username is required.</span>
+        <span>Username is required.</span>
       </span>
       </p>
 
