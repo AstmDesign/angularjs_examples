@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="" ng-app="MyApp">
+	<head>
+
+		<title>Get the addrees params  </title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+		<!--container-->
+		<div class="container">
+
+			<div ng-controller="GetMyParams">
+
+        <b> The current path: </b> {{current_path}} <br>
+        <b> Our params name: </b>  {{params}} <br>        
+        <b> Our params value: </b>  {{params_value}} <br>        
+
+			</div>
+
+
+		</div><!--container-->
+
+		<!-- angular -->
+		<script src="angular.min.js"></script>
+    <!-- route-->
+    <script src="angular-route.js"></script>
+    <!-- route-->
+    <script src="angular-resource.js"></script>
+    <script>
+      // define my app
+      var myApp = angular.module("MyApp",['ngRoute','ngResource']);
+
+      // define my controller
+      myApp.controller('GetMyParams', function($scope,$location) {
+ 
+      console.log($location);
+
+      // Get the current path to add active menu link
+      var current_url=$location.absUrl();
+
+      $scope.current_path = current_url;
+
+      //Get job_id params
+      $scope.params=current_url.substr(current_url.lastIndexOf('?')+1);
+
+      //Get job_id params value
+      $scope.params_value = $location.search().user_id;
+
+      });
+    </script>
+
+	</body>
+</html>
