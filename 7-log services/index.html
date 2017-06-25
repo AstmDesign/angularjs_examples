@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="" ng-app="MyApp">
+<head>
+
+  <title>Log services  </title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+  <!--container-->
+  <div class="container">
+
+    <div ng-controller="MyController">
+
+    </div>
+
+
+  </div><!--container-->
+
+  <!-- angular -->
+  <script src="angular.min.js"></script>
+  <script>
+  // define my app
+  var myApp = angular.module("MyApp",[]);
+
+  // define my controller
+  myApp.controller('MyController', function($scope,$log,$filter) {
+
+    // using log services
+    console.log("this is java script log");
+
+    $log.log("his is angular log");
+
+    $log.info("his is angular info");
+
+    $log.warn("his is angular warn");
+
+    $log.debug("his is angular debug");
+
+    $log.error("his is angular error");
+
+    // using filter
+
+    $scope.name = "astm";
+
+    $scope.formatted_name = $filter('uppercase')($scope.name);
+
+    $log.log($scope.name);
+    $log.log($scope.formatted_name);
+
+
+  });
+  </script>
+
+</body>
+</html>

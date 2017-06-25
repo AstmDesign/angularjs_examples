@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="" ng-app="MyApp">
+<head>
+
+  <title>Log services  </title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+  <!--container-->
+  <div class="container">
+
+    <div ng-controller="MyController">
+      <form name="my_form">
+        <div ng-messages="my_form.name.$error">
+          <div ng-message="required"> this field require </div>
+          <div ng-message="minlength"> the value enterd was too short </div>
+        </div>
+        <input type="text" ng-model="name" name="name" minlength="4" required />
+      </form>
+    </div>
+
+
+  </div><!--container-->
+
+  <!-- angular -->
+  <script src="angular.min.js"></script>
+  <!-- messages -->
+  <script src="angular-messages.js"></script>
+
+  <script>
+  // define my app
+  var myApp = angular.module("MyApp",['ngMessages']);
+
+  // define my controller
+  myApp.controller('MyController', function($scope) {
+
+
+  });
+  </script>
+
+</body>
+</html>
